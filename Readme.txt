@@ -6,10 +6,13 @@ To minimize support requirements (there were ~13K installs with a 4.08 average r
 
 To get this to run requires:
 
-Azure SQL Server database with tables and stored procedures as found in the Database folder.  See the file DbSqlServer.cs and ServiceConfiguration.Cloud.cscfg for some additional connection requirements.
+1) Create an Azure SQL Server database instance and database server.  Once created, use SSMS to run the scripts to generate tables and stored procedures as found in the Database folder.  See the file DbSqlServer.cs and ServiceConfiguration.Cloud.cscfg for places to put connection string information specific to the install.
 
-Azure Storage Account classic, for which access keys are placed in the ServiceConfiguration.Cloud.cscfg.
+2) Create an Azure Storage Account classic.  This is used as a non-relational database to keep some logs and other other information.  The connection string for the account created goes into the ServiceConfiguration.Cloud.cscfg.
 
-The exact version of memcached from NuGet should be used. EnyimMemcached v2.16 and WazMemcachedServer v1.0.  Memcached was popular at the time, although I have used Redis more often since then for other projects.
+3) Create a Cloud Services classic instance.  This is where the application is published.  As part of the publishing process, it will also want the storage account.
 
-Create a Cloud Services classic instance on Azure and publish it there.  You will need to acquire some Weather Underground keys to access their API.
+4) You will need to acquire some Weather Underground keys to access their API and place those in the ServiceConfiguration.Cloud.cscfg.
+
+NOTE: The exact version of memcached server and client (from NuGet) should be used. EnyimMemcached v2.16 and WazMemcachedServer v1.0.  Memcached was popular at the time, although I have used Redis more often since then for other projects.
+
