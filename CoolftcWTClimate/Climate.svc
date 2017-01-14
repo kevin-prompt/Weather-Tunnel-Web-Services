@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Coolftc.WTClimate.Climate" CodeBehind="Climate.svc.cs" factory="WSHelpers.WSHFactoryOverrideCL" %>

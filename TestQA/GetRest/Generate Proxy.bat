@@ -1,0 +1,2 @@
+"K:\Applications\Dragnet\Source\Dragnet\Tools\Build\Microsoft\svcutil.exe" http://10.12.10.97:8081/Service1.svc?wsdl -out:Service1 -config:app.testservice.config -namespace:*,WCFServiceWebRole1 /async /nologo
+pause

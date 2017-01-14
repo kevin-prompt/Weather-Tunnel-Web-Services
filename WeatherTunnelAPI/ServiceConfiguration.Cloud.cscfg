@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="WeatherTunnelAPI" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="CoolftcWTClimate">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="CloudTableConnection" value="DefaultEndpointsProtocol=https;AccountName=weathertechstorage;AccountKey=D4O+2iyNlqO5oy718phjRYo1RKPQ2XX2/zV3KNPZ18x4gCGJthawWroiYoIEyxyzNKzYCNRmW9I3lw821oNx5A==" />
+      <Setting name="PrepaqTableConnection" value="DefaultEndpointsProtocol=https;AccountName=weathertechstorage;AccountKey=D4O+2iyNlqO5oy718phjRYo1RKPQ2XX2/zV3KNPZ18x4gCGJthawWroiYoIEyxyzNKzYCNRmW9I3lw821oNx5A==" />
+      <Setting name="RegisterTableConnection" value="DefaultEndpointsProtocol=https;AccountName=weathertechstorage;AccountKey=D4O+2iyNlqO5oy718phjRYo1RKPQ2XX2/zV3KNPZ18x4gCGJthawWroiYoIEyxyzNKzYCNRmW9I3lw821oNx5A==" />
+      <Setting name="CacheTableConnection" value="DefaultEndpointsProtocol=https;AccountName=weathertechstorage;AccountKey=D4O+2iyNlqO5oy718phjRYo1RKPQ2XX2/zV3KNPZ18x4gCGJthawWroiYoIEyxyzNKzYCNRmW9I3lw821oNx5A==" />
+      <Setting name="StaleQueueConnection" value="DefaultEndpointsProtocol=https;AccountName=weathertechstorage;AccountKey=D4O+2iyNlqO5oy718phjRYo1RKPQ2XX2/zV3KNPZ18x4gCGJthawWroiYoIEyxyzNKzYCNRmW9I3lw821oNx5A==" />
+      <Setting name="ApplicationName" value="CoolftcWTClimate" />
+      <Setting name="All_LedgerLevel" value="-1" />
+      <Setting name="Forcetime" value="300" />
+      <Setting name="Lifetime" value="35" />
+      <Setting name="Deathtime" value="1500" />
+      <Setting name="MaxMinute" value="10" />
+      <Setting name="MaxDay" value="500" />
+      <Setting name="CacheSize" value="768" />
+      <Setting name="CacheEndPoint" value="Memcached" />
+      <Setting name="WUIendpoint" value="http://api.wunderground.com/api/" />
+      <Setting name="WUIkey" value="" />
+      <Setting name="WUIkeyFailKeys" value="" />
+      <Setting name="WTSkey" value="387wodpjfQWER987" />
+      <Setting name="WUIformat" value=".xml" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="kevrogers" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHRHF+CBjkWqS6azxsE0MM4wDQYJKoZIhvcNAQEBBQAEggEALGdyFDhx8jniOEeB3JWSnf0Law0KpM0gT+lLoVcr73JZZO32Si7JJz2BWt8kBDuYzYnWeEIQpzLAlAfRZt+AUuuaare5DQs9wybMO6+GIpFZKfUgbOyQtWpCLUrA6/mDj4W4KRenf69yS495/niAy8vOip7zqpY5h3WvV1yN8efBBpcpSPTDwtDIgdnhFbdaLIZ8ynW8gzDEnpRKroNC743j7oUrJl57l97kD3qzX0ebnkZ1DXFkui6sa5z/bi4orXi8Go9CFNjD3GnH3eyS4FSs8B72k3JlciFrAfzOyh1S8OfwXxXH0EX5vDdy6c5/eOkgmZ95NcJZE5OpshWLmDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECEBKR3hRE/2XgBA8n0SqviYdfMqUT0K16BnP" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2018-06-14T23:59:59.0000000-07:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+      <Setting name="Audit_IV" value="0This is 16 char" />
+      <Setting name="Audit_Key" value="0This should be 32 char string67" />
+      <Setting name="Region" value="PROD" />
+      <Setting name="SQL_Table" value="password" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="925A3B89688A70C2C6965DF325F358701E260782" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

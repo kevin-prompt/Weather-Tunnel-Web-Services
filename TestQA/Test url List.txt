@@ -1,0 +1,155 @@
+To restore the server:
+1) Create SQL Instace/DB and tables/stored procs
+2) Update SQL Connection String builder in Code (and config if password changed)
+3) Create classic storage (for tables & queues) and update config with connection string
+4) DO NOT upgrade the memcached server (or you could replace memcached with redis)
+
+
+To debug Azure remotly:
+1) set the web config file to say debug=true
+2) when publishing, use Environment=Stage, Build=Debug and select the Remote Debugger checkbox in adavanced settings.
+3) in VS Server Explorer, expand the Azure node to the Cloud Service instance and use property menu to attach debugger to
+	- w3wp.exe to catch the web based calls (need to make a request to start this up)
+	- WallSHost.exe to catch the role based calls 
+
+Test local URLs for WT API
+HINTS:
+Make the Azure project the default and run it (that should start the emulator).
+Make sure you have the proper Server and Climate ticket in any of the URLs.
+See: https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-debug-cloud-services-virtual-machines/
+
+WU Direct Checks:
+http://api.wunderground.com/api/cef3f17cda4affce/conditions/q/pws:kcasanfr155.xml
+http://www.wunderground.com/personal-weather-station/dashboard?ID=KCASANFR155
+http://www.wunderground.com/weatherstation/WXDailyHistory.asp?ID=KCASANFR155
+http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/pws:KCASANFR155?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0WebQAv1.0
+
+Servers:
+Azure Dev- 79878383f45c4dffa5d2961aa3de712a.cloudapp.net (changes with each new install, see deployment id)
+Azure Prod - wt.cloudapp.net
+
+User Ticket - 65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0 (sample of a ticket created during client registration) 
+Support Ticket - 387wodpjfQWER987 (can be used to access API without registration)
+
+
+Base:		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc
+		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc
+
+Version:	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/utility/version
+		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/version
+
+Lookup Free:	http://autocomplete.wunderground.com/aq?query=Amundsen-Scott&format=xml
+Lookup Link:	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/location/search/zmw:94118.1.99999?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+Lookup Link:	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/location/search/zmw:94978.1.99999?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(Poland)	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/location/search/zmw:00000.1.12566?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(Antarctica)	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/location/search/zmw:00000.1.89009?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+
+Lookup GeoC:	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/location/search/37.998564,-122.570269?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+		
+USA		
+Public:		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/KSFO?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(slim)		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/slim/KSFO?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(detail)	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/detail/KSFO?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(force) 	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/force/KSFO?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+
+Personal:	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/pws:KCASANAN1?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(slim)		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/slim/pws:KCASANAN1?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(detail)	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/detail/pws:KCASANAN1?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(force) 	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/force/pws:KCASANAN1?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+
+Poland
+Public:		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/EGLL?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(slim)		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/slim/EPKK?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(detail)	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/detail/EPKK?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(force) 	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/force/EPKK?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+
+Personal:	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/pws:ISRTRNDE35?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(slim)		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/slim/pws:IMAU01423?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(detail)	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/detail/pws:IMAU01423?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+(force) 	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/force/pws:IMAU01423?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+
+Get Stats	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/stats?ticket=387wodpjfQWER987
+
+Prepaq Test:
+Get		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/location/prepaq/testingPrePaq?ticket=65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0
+
+New		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/location/prepaq/new/testingPrePaq/Yankees%20Ballpark?where=40.830165,-73.926414&ticket=387wodpjfQWER987
+		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/location/prepaq/new/testingPrePaq/Giants%20Ballpark?where=37.7785,-122.388999&ticket=387wodpjfQWER987
+
+Del		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/location/prepaq/del/testingPrePaq/Giants%20Ballpark?ticket=387wodpjfQWER987
+		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/location/prepaq/del/testingPrePaq/Yankees%20Ballpark?ticket=387wodpjfQWER987
+		
+Registration:
+New		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Climate.svc/rest/v1/weather/register/lucky?ticket=KevinWebQAv1.0
+
+Get		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/register/65636cde-178f-4c26-9807-58f2002a5bd4WebQAv1.0?ticket=387wodpjfQWER987
+
+Search		http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/register/search?start=2014-01-02T12:01:01.1234567-08:00&end=2014-12-31T12:01:01.1234567-08:00&ticket=387wodpjfQWER987
+
+Deactive	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/register/chg/d374f59e-1b5d-4e07-bf53-bdba6a5e8753?active=true&ticket=387wodpjfQWER987
+
+Logging:
+Get Logs	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/log?ticket=387wodpjfQWER987
+
+Logs by Date	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/log/search?start=2014-10-19T20:00:13.8331136-07:00&end=2015-01-21T12:01:01.1234567-08:00&ticket=387wodpjfQWER987
+
+Del App Logs	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/log/del/12520615480279600458?ticket=387wodpjfQWER987
+Del by Date	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/log/del?start=2012-06-10T12:01:01.1234567-08:00&end=2013-01-21T12:01:01.1234567-08:00&ticket=387wodpjfQWER987
+		
+Get Audit	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/audit/search?billing=-1&service=CoolftcWTClimate.Climate&ticket=387wodpjfQWER987
+
+Audit Total	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/audit/search/count?billing=-1&service=CoolftcWTClimate.Climate&ticket=387wodpjfQWER987
+
+Del Audit	http://79878383f45c4dffa5d2961aa3de712a.cloudapp.net/Support.svc/rest/v1/utility/audit/del/range?billing=9&ticket=387wodpjfQWER987
+
+
+==================================================
+SQL Scripts for the Audit Table
+==================================================
+
+select top 3 *
+from audit
+order by CreateDate desc
+
+Check on Registrations:
+
+select count(AuditID)
+from audit
+where Billing = 9
+
+select count(auditID)
+from audit
+where MethodName = 'GetRegistration'
+
+-- The code below will delete all audit data except registrations that is older than the specific date.
+-- The idea is to keep ~8 million records, which at 3/2014 would be about 9 months.
+-- In 12/2013 added the Count table, which when added to a year of Audit data gets us to +90% of 5GB (free account max).
+-- Will now be cutting back to ~5 million records on Audit to allow Count to grow.
+
+select count(AuditID)
+from audit
+where CreateDate < '2014-06-01'
+
+delete from audit
+where CreateDate < '2014-06-01' and Billing != 9
+
+select count(AuditID)
+from audit
+where CreateDate < '2014-06-01'
+
+-- Count DB.  This will need to be cleaned up over time, but not sure if any should be kept.
+
+select count(CountID)
+from count
+where CreateDate < '2014-06-01'
+
+delete from count
+where CreateDate < '2014-06-01' -- and ???
+
+select count(CountID)
+from count
+where CreateDate < '2014-06-01'
+
+
+
+
