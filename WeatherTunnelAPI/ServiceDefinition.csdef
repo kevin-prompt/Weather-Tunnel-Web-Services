@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="WeatherTunnelAPI" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
   <WebRole name="CoolftcWTClimate" vmsize="Small">
     <Sites>
@@ -12,10 +12,6 @@
       <InputEndpoint name="HttpIn" protocol="http" port="80" />
       <InternalEndpoint name="Memcached" protocol="tcp" />
     </Endpoints>
-    <Imports>
-      <Import moduleName="RemoteAccess" />
-      <Import moduleName="RemoteForwarder" />
-    </Imports>
     <LocalResources>
       <LocalStorage name="CoolftcWTClimate.svclog" sizeInMB="1000" cleanOnRoleRecycle="true" />
     </LocalResources>
@@ -42,7 +38,9 @@
       <Setting name="Audit_IV" />
       <Setting name="Audit_Key" />
       <Setting name="Region" />
+      <Setting name="SQL_Room" />
       <Setting name="SQL_Table" />
+      <Setting name="SQL_Chair" />
     </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>

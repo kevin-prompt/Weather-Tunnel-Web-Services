@@ -5,6 +5,14 @@ using System.Data;
 
 namespace WSHelpers
 {
+    /// <summary>
+    /// This is the general utility class for accessing SQL. It creates a connection and then allows
+    /// stored procedures to be called and their data returned.
+    /// 
+    /// NOTE: With Azure SQL, these methods should always be placed within a try/catch higher up in the code.  It is common for 
+    /// the low level socket connection to be lost and for a cached connection to reply with an error - "The semaphore timeout period has expired".
+    /// This just requires a 2 try so a the connection can be properly created on a new socket.
+    /// </summary>
     public class DbSqlServer
     {
         private SqlConnectionStringBuilder csBuilder = null;
@@ -14,13 +22,13 @@ namespace WSHelpers
             string region = RoleEnvironment.GetConfigurationSettingValue("Region");
 
             csBuilder = new SqlConnectionStringBuilder();
-            csBuilder.DataSource = region.Equals("PROD") ? "weathertech.database.windows.net" : ".\\SQLEXPRESS";
-            csBuilder.InitialCatalog = "weathertechdb";
+            csBuilder.DataSource = region.Equals("PROD") ? RoleEnvironment.GetConfigurationSettingValue("SQL_Room") : ".\\SQLEXPRESS";
+            csBuilder.InitialCatalog = "wtunneldb";
             if (region.Equals("PROD"))
             {
                 csBuilder.Encrypt = true;
                 csBuilder.TrustServerCertificate = false;
-                csBuilder.UserID = "weathertechsql@weathertech";
+                csBuilder.UserID = RoleEnvironment.GetConfigurationSettingValue("SQL_Chair");
                 csBuilder.Password = RoleEnvironment.GetConfigurationSettingValue("SQL_Table");
             }
             else
@@ -45,7 +53,8 @@ namespace WSHelpers
                     command.CommandType = CommandType.StoredProcedure;
                     foreach (SqlParameter parameter in parameters) command.Parameters.Add(parameter);
                     // Execute a command
-                    command.ExecuteNonQuery();
+                    try { command.ExecuteNonQuery(); }
+                    catch { command.Parameters.Clear(); connection.Close(); throw; }
                     connection.Close();
                 }
             }
@@ -67,7 +76,9 @@ namespace WSHelpers
                     command.CommandType = CommandType.StoredProcedure;
                     foreach (SqlParameter parameter in parameters) command.Parameters.Add(parameter);
                     // Execute a command
-                    object rtn = command.ExecuteScalar();
+                    object rtn;
+                    try { rtn = command.ExecuteScalar(); }
+                    catch { command.Parameters.Clear(); connection.Close(); throw; }
                     connection.Close();
                     return rtn;
                 }
@@ -95,7 +106,8 @@ namespace WSHelpers
                     {
                         connection.Open();
                         sqlDA.SelectCommand = command;
-                        sqlDA.Fill(rtn);
+                        try { sqlDA.Fill(rtn); }
+                        catch { command.Parameters.Clear(); connection.Close(); throw; }
                         if (rtn.Tables[0].Rows.Count > 0) row = rtn.Tables[0].Rows[0];
                         connection.Close();
                         return row;
@@ -124,7 +136,8 @@ namespace WSHelpers
                     {
                         connection.Open();
                         sqlDA.SelectCommand = command;
-                        sqlDA.Fill(rtn);
+                        try { sqlDA.Fill(rtn); }
+                        catch { command.Parameters.Clear(); connection.Close(); throw; }
                         connection.Close();
                         return rtn;
                     }

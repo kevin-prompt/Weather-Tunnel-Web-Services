@@ -22,18 +22,12 @@
       <Setting name="WUIkeyFailKeys" value="" />
       <Setting name="WTSkey" value="387wodpjfQWER987" />
       <Setting name="WUIformat" value=".xml" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="kevrogers" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEHRHF+CBjkWqS6azxsE0MM4wDQYJKoZIhvcNAQEBBQAEggEALGdyFDhx8jniOEeB3JWSnf0Law0KpM0gT+lLoVcr73JZZO32Si7JJz2BWt8kBDuYzYnWeEIQpzLAlAfRZt+AUuuaare5DQs9wybMO6+GIpFZKfUgbOyQtWpCLUrA6/mDj4W4KRenf69yS495/niAy8vOip7zqpY5h3WvV1yN8efBBpcpSPTDwtDIgdnhFbdaLIZ8ynW8gzDEnpRKroNC743j7oUrJl57l97kD3qzX0ebnkZ1DXFkui6sa5z/bi4orXi8Go9CFNjD3GnH3eyS4FSs8B72k3JlciFrAfzOyh1S8OfwXxXH0EX5vDdy6c5/eOkgmZ95NcJZE5OpshWLmDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECEBKR3hRE/2XgBA8n0SqviYdfMqUT0K16BnP" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2018-06-14T23:59:59.0000000-07:00" />
-      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
       <Setting name="Audit_IV" value="0This is 16 char" />
       <Setting name="Audit_Key" value="0This should be 32 char string67" />
       <Setting name="Region" value="PROD" />
+      <Setting name="SQL_Room" value="server.database.windows.net" />
       <Setting name="SQL_Table" value="password" />
+      <Setting name="SQL_Chair" value="userid@wtunneldbsvr" />
     </ConfigurationSettings>
-    <Certificates>
-      <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="925A3B89688A70C2C6965DF325F358701E260782" thumbprintAlgorithm="sha1" />
-    </Certificates>
   </Role>
 </ServiceConfiguration>
